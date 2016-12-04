@@ -1,0 +1,148 @@
+
+#pop_background{
+  position: fixed;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  background-color: #000000;
+  opacity: 0.4;
+  visibility: hidden;
+}
+#popup_showInfo{
+  position: fixed;
+  width: 380px;
+  left: 0;
+  top:  0;
+  margin-left: 35%;
+  margin-top: 5%;
+  padding: 10px;
+  background-color:#FFFFFF;
+  border-radius: 10px;
+  padding:10px;
+  visibility: hidden;
+}
+#popup_feeling{
+  width: 80%;
+  height: 100px;
+  font-size: 16px;
+  text-align: left;
+  color: #757575;
+  border: none;
+}
+#div_index{
+  padding-top: 40px;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 40px;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  background-color: #555555;
+}
+#div_todo_pool{
+  padding: 50px;
+  text-align: left;
+  font-size: 24px;
+  overflow: auto;
+}
+#div_index_friend{
+  transition: color .2s ease-out, background .2s ease-out;
+}
+#div_index_timer{
+  ;
+}
+#btn_index_timer_stop{
+  ;
+}
+#btn_login{
+    height: auto;
+    margin: 10px 5px;
+    padding: 5px;
+    background-color: #ffffff;
+    border: 3px solid #6d84b4;
+    color: #3b5998;
+    font-size: 20px;
+    visibility: hidden;
+}
+#txt_index_timer_number{
+  ;
+}
+.div_todo{
+  padding: 10px;
+}
+.btn_number{
+  height: 24px;
+  line-height: 0px;
+  margin: 0px;
+  min-width: 2px;
+  margin: 0px 8px;
+  padding: 0px 10px;
+  font-size: 13px;
+}
+.btn_green{
+  background-color: #3EC195;
+  border: 1px solid #3EC195;
+  color: #f2f2f2;
+}
+.btn_orange{
+  background-color: #FF7744;
+  border: 1px solid #FF7744;
+  color: #f2f2f2;
+}
+.txt_task_pool{
+}
+#txt_index_title{
+  color:#66CDAA;
+  font: bold;
+  font-size: 36px;
+}
+.txt_number{
+  font-size: 16px;
+}
+.txt_index_timer_title{
+  font-size: 28px;
+  color: #f2f2f2;
+  visibility: visible;
+}
+.txt_index_timer{
+  font-size: 52px;
+  color: #f2f2f2;
+}
+.index{
+  width=100%;
+}
+.img_round{
+  border-radius:99em;
+}
+body{
+  text-align: center;
+  color: #393939;
+}
+input{
+  width: 80%;
+  margin: 5px;
+  height: 25px;
+  font-size: 20px;
+  padding: 10px;
+  border: hidden;
+  border-bottom: 0.1px solid gray;
+}
+h3{
+  color: #757575;
+}
+button{
+  height: 32px;
+  line-height: 27px;
+  background-color: #757575;
+  border: 1px solid #757575;
+  border-radius: 2px;
+  color: #f2f2f2;
+  cursor: default;
+  font-family: arial,sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 11px 4px;
+  min-width: 54px;
+  padding: 0 16px;
+  text-align: center;
+}

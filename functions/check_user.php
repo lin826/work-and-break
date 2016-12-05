@@ -4,11 +4,6 @@
 	$password = "cs102062374";
 	$dbname = "Work_n_break";
 
-	$id = $_POST['ID'];
-	$name = $_POST['NAME'];
-	$email = $_POST['EMAIL'];
-	$pic = $_POST['PIC'];
-
 	// Create connection
 	$conn = new mysqli($servername, $username, $password);
 
@@ -17,8 +12,12 @@
     	die("Connection failed: " . $conn->connect_error);
 	} else {
 		$conn->select_db( $dbname );
-		if(isset($id) && !empty($id))
+		if(isset($_POST['ID']) && !empty($_POST['ID']))
 		{
+			$id = $_POST['ID'];
+			$name = $_POST['NAME'];
+			$email = $_POST['EMAIL'];
+			$pic = $_POST['PIC'];
 			//include_once 'db.php';
 			//extract($_POST); // extract post variables
 
@@ -30,7 +29,7 @@
 				//new user - we need to insert a record
 				$time = time();
 				$insert_user_query = "Insert into Users (`user_id`, `user_picture`, `user_email`,`user_name`,`user_status_value`,`user_status_text`,`user_is_online`)
-					VALUES ('$id', '$pic', '$email','$name','','','TRUE')";
+					VALUES ('$id', '$pic', '$email','$name','0','','1')";
 				if ($conn->query($insert_user_query) === TRUE) {
     				$last_id = $conn->insert_id;
     				echo "New record created successfully. Last inserted ID is: " . $last_id;

@@ -35,15 +35,14 @@
   		<button type="button" class="btn_green" onclick="timerStart()">Start</button>
   		<button id="btn_index_timer_stop" type="button" onclick="timerStop()">Stop </button>
   	</div>
-    <form action="functions/check_user.php" method="post">
-      <button id="btn_login" onlogin="checkLoginState()">
-        <img src='images/"f"logo_online/png/FB-f-Logo__blue_29.png'>
-        Login with Facebook
-      </button>
-    </form>
-    <!-- Friends Div-->
-    <div id="div_index_friend" class="index">
-    </div>
+  </div>
+
+  <button id="btn_login" onclick="facebook_login()">
+      <img src='images/"f"logo_online/png/FB-f-Logo__blue_29.png'>
+      Login with Facebook
+  </button>
+  <!-- Friends Div-->
+  <div id="div_index_friend" class="index cscrollmenu">
   </div>
 
   <!-- Todo List Div -->

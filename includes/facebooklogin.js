@@ -1,4 +1,9 @@
 
+function facebook_login(){
+  FB.login(function(response) {
+     checkLoginState();
+   }, {scope: 'public_profile,email,user_friends'});
+}
 // This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
   // The response object is returned with a status field that lets the
@@ -7,6 +12,7 @@ function statusChangeCallback(response) {
   // for FB.getLoginStatus().
   if (response.status === 'connected') {
     // Logged into your app and Facebook.
+    document.getElementById('btn_login').style.visibility = "hidden";
     showUser();
   } else if (response.status === 'not_authorized') {
     // The person is logged into Facebook, but not your app.
@@ -68,10 +74,84 @@ FB.getLoginStatus(function(response) {
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.
 function showUser() {
+  if (window.XMLHttpRequest) {
+      // code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp = new XMLHttpRequest();
+  } else {
+      // code for IE6, IE5
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  // Set user information
   FB.api('/me','GET',{"fields":"id,name,email,picture"},
   function(response) {
-    $.post( "functions/check_user.php", {
-      ID: response.id, NAME: response.name, EMAIL: response.email,
-      PIC: response.picture.data.url});
+    //console.log(String(response.id));
+    var node = document.createElement("img");
+    node.setAttribute("src",response.picture.data.url);
+    node.setAttribute("class","img_round");
+    document.getElementById("div_index_timer").insertBefore(node,document.getElementById("div_index_timer").childNodes[0]);
+
+    $.post( 'functions/check_user.php', {
+      'ID': response.id, 'NAME': String(response.name), 'EMAIL': String(response.email),
+      'PIC': String(response.picture.data.url)})
+      /*.success(function(e) { alert("second success "+e.responseText); })
+      .error(function(e) { alert("error "+e.responseText); })
+      .complete(function(e) { alert("complete "+e.responseText); })*/;
   });
+  // Set friend list
+  FB.api('/me','GET',{"fields":"friends"},
+  function(response) {
+    console.log(response.friends.data.length);
+    var variable = [];
+    for (var i=0;i<parseInt(response.friends.data.length);i++) {
+      variable.push(response.friends.data[i].id);
+      // $.post( "functions/get_user_picture.php", {
+      //   'ID': String(variable.id)})
+      //   .done(function(data){
+          // var node = document.createElement("img");
+          // node.setAttribute("src",data.responseText);
+          // node.setAttribute("class","img_round");
+          // document.getElementById("div_index_friend").insertBefore(node,document.getElementById("div_index_friend").childNodes[0]);
+      // }).success(function(e) { alert("second success "+e.responseText); })
+      // .error(function(e) { alert("error "+e.responseText); })
+      // .complete(function(e) { alert("complete "+e.responseText); });
+    }
+    console.log(variable);
+    xmlhttp.open("GET","functions/get_user_picture.php?ID="+JSON.stringify(variable),true);
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var list = this.responseText.split(";");
+        for (var s=0;s<list.length/2-1;s++){
+          var a = document.createElement("a");
+          var dot = document.createElement("div");
+          a.setAttribute("href","https://google.com");
+          var node = document.createElement("img");
+          node.setAttribute("src",list[s*2]);
+          switch (list[s*2+1]) { // is offline
+            case '0':
+              node.setAttribute("class","img_round img_offline");
+              dot.setAttribute("class","status_circle gray");
+              break;
+            case '1': // is online but not in work time
+              node.setAttribute("class","img_round");
+              dot.setAttribute("class","status_circle green");
+              break;
+            case '2': // is online but in work time
+              node.setAttribute("class","img_round");
+              dot.setAttribute("class","status_circle red");
+              break;
+            default: node.setAttribute("class","img_round img_offline");
+          }
+          a.appendChild(dot);
+          a.appendChild(node);
+          var div = document.createElement("span");
+          div.appendChild(a);
+          // document.getElementById("div_index_friend").insertBefore(node,document.getElementById("div_index_friend").childNodes[0]);
+          // document.getElementById("div_index_friend").innerHTML+="--";
+          document.getElementById("div_index_friend").appendChild(div);
+        }
+      }
+    };
+    xmlhttp.send();
+  }
+);
 }

@@ -35,8 +35,7 @@
   padding-left: 10%;
   padding-right: 10%;
   padding-bottom: 40px;
-  margin-top: 10%;
-  margin-bottom: 10%;
+  margin-top: 80px;
   background-color: #555555;
 }
 #div_todo_pool{
@@ -114,6 +113,34 @@
 .img_round{
   border-radius:99em;
 }
+.img_offline{
+  filter: grayscale(100%) opacity(30%);
+  -webkit-filter: grayscale(100%) opacity(30%);
+}
+.img_alert{
+    -webkit-filter: drop-shadow(8px 8px 10px red); /* Safari */
+    filter: drop-shadow(8px 8px 10px red);
+}
+.red{
+  background: #FF7744;
+}
+.gray{
+  background: #CCCCCC;
+}
+.green{
+  background: #31CE95;
+}
+.status_circle {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  width: 10px;
+  height: 10px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  z-index: 1;
+}
 body{
   text-align: center;
   color: #393939;
@@ -145,4 +172,25 @@ button{
   min-width: 54px;
   padding: 0 16px;
   text-align: center;
+}
+a{
+    position: relative;
+    margin: 0px 20px;
+}
+div.scrollmenu {
+    background-color: #333;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+div.scrollmenu a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+    background-color: #777;
 }

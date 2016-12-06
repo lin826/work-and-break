@@ -26,25 +26,25 @@ if(isset($_GET['fid']) && !empty($_GET['fid'])){
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="styles/layout.css" type="text/css">
   <title>Pomodoro Online Social Society</title>
-  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-  <script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
 </head>
 <body style="background-color:#F5F5F5">
-  <!-- <script type="text/javascript" src="includes/member_script.js"></script> -->
-  
 
   <div id="div_index">
     <div>
     	<p class="txt_index_title" style="font-family: 'Times New Roman', Times, serif;">Pomodoro Online Social Society</p>
  	  </div>
     <!-- Profile Div -->
-    <div class="index">
-      <img src=<?php echo 'https://graph.facebook.com/'.$_GET['fid'].'/picture?type=large'; ?> class="img_round"></img>
-      <canvas id="myChart" width="400" height="400"></canvas>
+    <div class="index" style="height: 400px;">
+      <img src=<?php echo 'https://graph.facebook.com/'.$_GET['fid'].'/picture?type=large'; ?> class="img_round" style="margin-top: 100px;"></img>
+      <div id="container" style="height: 400px; width: 600px; margin: 0 auto; float: right;">
+      </div>
     </div>
+  </div>
 
-
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/highcharts-more.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script type="text/javascript" src="includes/member_script.js"></script>
 </body>
 </html>

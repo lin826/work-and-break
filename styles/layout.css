@@ -196,3 +196,7 @@ div.scrollmenu a {
 div.scrollmenu a:hover {
     background-color: #777;
 }
+
+.highcharts-tooltip h3 {
+    margin: 0.3em 0;
+}

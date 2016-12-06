@@ -8,6 +8,7 @@
   background-color: #000000;
   opacity: 0.4;
   visibility: hidden;
+  z-index: 2;
 }
 #popup_showInfo{
   position: fixed;
@@ -21,6 +22,7 @@
   border-radius: 10px;
   padding:10px;
   visibility: hidden;
+  z-index: 3;
 }
 #popup_feeling{
   width: 80%;
@@ -57,9 +59,9 @@
     height: auto;
     margin: 10px 5px;
     padding: 5px;
-    background-color: #ffffff;
-    border: 3px solid #6d84b4;
-    color: #3b5998;
+    /*background-color: #ffffff;*/
+    /*border: 3px solid #6d84b4;*/
+    color: #ffffff;
     font-size: 20px;
     visibility: hidden;
 }
@@ -90,7 +92,7 @@
 }
 .txt_task_pool{
 }
-#txt_index_title{
+.txt_index_title{
   color:#66CDAA;
   font: bold;
   font-size: 36px;
@@ -174,8 +176,8 @@ button{
   text-align: center;
 }
 a{
-    position: relative;
-    margin: 0px 20px;
+  position: relative;
+  margin: 0px 20px;
 }
 div.scrollmenu {
     background-color: #333;

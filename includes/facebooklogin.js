@@ -36,29 +36,29 @@ function checkLoginState() {
 }
 
 window.fbAsyncInit = function() {
-FB.init({
-  appId      : '1682938868641175',
-  cookie     : true,  // enable cookies to allow the server to access
-                      // the session
-  xfbml      : true,  // parse social plugins on this page
-  version    : 'v2.8' // use graph api version 2.8
-});
+  FB.init({
+    appId      : '1682938868641175',
+    cookie     : true,  // enable cookies to allow the server to access
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.8' // use graph api version 2.8
+  });
 
-// Now that we've initialized the JavaScript SDK, we call
-// FB.getLoginStatus().  This function gets the state of the
-// person visiting this page and can return one of three states to
-// the callback you provide.  They can be:
-//
-// 1. Logged into your app ('connected')
-// 2. Logged into Facebook, but not your app ('not_authorized')
-// 3. Not logged into Facebook and can't tell if they are logged into
-//    your app or not.
-//
-// These three cases are handled in the callback function.
+  // Now that we've initialized the JavaScript SDK, we call
+  // FB.getLoginStatus().  This function gets the state of the
+  // person visiting this page and can return one of three states to
+  // the callback you provide.  They can be:
+  //
+  // 1. Logged into your app ('connected')
+  // 2. Logged into Facebook, but not your app ('not_authorized')
+  // 3. Not logged into Facebook and can't tell if they are logged into
+  //    your app or not.
+  //
+  // These three cases are handled in the callback function.
 
-FB.getLoginStatus(function(response) {
-  statusChangeCallback(response);
-});
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
 
 };
 
@@ -70,6 +70,10 @@ FB.getLoginStatus(function(response) {
   js.src = "//connect.facebook.net/en_US/sdk.js";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+
+function go_member_page(e){
+  window.location='member.php?fid='+e.id;
+}
 
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.
@@ -85,10 +89,14 @@ function showUser() {
   FB.api('/me','GET',{"fields":"id,name,email,picture"},
   function(response) {
     //console.log(String(response.id));
+    var a = document.createElement("span");
     var node = document.createElement("img");
     node.setAttribute("src",response.picture.data.url);
     node.setAttribute("class","img_round");
-    document.getElementById("div_index_timer").insertBefore(node,document.getElementById("div_index_timer").childNodes[0]);
+    a.setAttribute("id",response.id);
+    a.setAttribute("onclick","go_member_page(this)");
+    a.appendChild(node);
+    document.getElementById("div_profile").appendChild(a);
 
     $.post( 'functions/check_user.php', {
       'ID': response.id, 'NAME': String(response.name), 'EMAIL': String(response.email),
@@ -100,22 +108,12 @@ function showUser() {
   // Set friend list
   FB.api('/me','GET',{"fields":"friends"},
   function(response) {
-    console.log(response.friends.data.length);
+    // console.log(response.friends.data.length);
     var variable = [];
     for (var i=0;i<parseInt(response.friends.data.length);i++) {
       variable.push(response.friends.data[i].id);
-      // $.post( "functions/get_user_picture.php", {
-      //   'ID': String(variable.id)})
-      //   .done(function(data){
-          // var node = document.createElement("img");
-          // node.setAttribute("src",data.responseText);
-          // node.setAttribute("class","img_round");
-          // document.getElementById("div_index_friend").insertBefore(node,document.getElementById("div_index_friend").childNodes[0]);
-      // }).success(function(e) { alert("second success "+e.responseText); })
-      // .error(function(e) { alert("error "+e.responseText); })
-      // .complete(function(e) { alert("complete "+e.responseText); });
     }
-    console.log(variable);
+    // console.log(variable);
     xmlhttp.open("GET","functions/get_user_picture.php?ID="+JSON.stringify(variable),true);
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -123,7 +121,8 @@ function showUser() {
         for (var s=0;s<list.length/2-1;s++){
           var a = document.createElement("a");
           var dot = document.createElement("div");
-          a.setAttribute("href","https://google.com");
+          a.setAttribute("id",variable[s]);
+          a.setAttribute("onclick","go_member_page(this)");
           var node = document.createElement("img");
           node.setAttribute("src",list[s*2]);
           switch (list[s*2+1]) { // is offline

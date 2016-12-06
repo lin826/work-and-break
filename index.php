@@ -18,9 +18,11 @@
 
   <div id="div_index">
     <div>
-    	<p id="txt_index_title" style="font-family: 'Times New Roman', Times, serif;">Pomodoro Online Social Society
+    	<p class="txt_index_title" style="font-family: 'Times New Roman', Times, serif;">Pomodoro Online Social Society
       </p>
     </div>
+  <div id="div_profile">
+  </div>
 
     <!-- Timer and Title Div -->
  	<div id="div_index_timer" class="index">
@@ -36,14 +38,14 @@
   		<button id="btn_index_timer_stop" type="button" onclick="timerStop()">Stop </button>
   	</div>
   </div>
-
   <button id="btn_login" onclick="facebook_login()">
-      <img src='images/"f"logo_online/png/FB-f-Logo__blue_29.png'>
+      <img src='images/"f"logo_online/png/FB-f-Logo__white_29.png'>
       Login with Facebook
   </button>
   <!-- Friends Div-->
   <div id="div_index_friend" class="index cscrollmenu">
   </div>
+
 
   <!-- Todo List Div -->
   <div id="div_todo_pool">
@@ -94,5 +96,18 @@
 
     <script type="text/javascript" src="includes/script.js"></script>
 
+    <div>Icons made by
+      <a style="color:#393939;" href="http://www.flaticon.com/authors/madebyoliver" title="Madebyoliver">
+        Madebyoliver
+      </a>
+      from
+      <a style="color:#393939;" href="http://www.flaticon.com" title="Flaticon">
+        www.flaticon.com
+      </a>
+      is licensed by
+      <a style="color:#393939;" href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">
+        CC 3.0 BY
+      </a>
+    </div>
 </body>
 </html>
